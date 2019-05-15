@@ -2,7 +2,8 @@ import App, { Container } from 'next/app';
 import { ThemeProvider, injectGlobal } from 'styled-components';
 import React from 'react';
 import Page from '../components/Page';
-
+import { ApolloProvider } from 'react-apollo';
+import withData from '../lib/withData';
 
 const theme = {
     red: '#FF0000',
@@ -47,6 +48,7 @@ injectGlobal`
 `;
 
 class SickFitsApp extends App {
+    // Next lifecycle method
     static async getInitialProps({ Component, ctx }) {
         let pageProps = {}
 
@@ -54,21 +56,25 @@ class SickFitsApp extends App {
             pageProps = await Component.getInitialProps(ctx)
         }
 
+        // Exposes the query to the user.
+        pageProps.query = ctx.query;
         return { pageProps }
     }
 
     render() {
-        const { Component, pageProps } = this.props
+        const { Component, pageProps, apollo } = this.props
         return (
             <Container>
-                <ThemeProvider theme={theme}>
-                    <Page>
-                        <Component {...pageProps} />
-                    </Page>
-                </ThemeProvider>
+                <ApolloProvider client={apollo}>
+                    <ThemeProvider theme={theme}>
+                        <Page>
+                            <Component {...pageProps} />
+                        </Page>
+                    </ThemeProvider>
+                </ApolloProvider>
             </Container>
         )
     }
 }
 
-export default SickFitsApp;
+export default withData(SickFitsApp);

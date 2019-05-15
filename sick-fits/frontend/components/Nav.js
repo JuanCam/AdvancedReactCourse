@@ -10,7 +10,7 @@ const nav = props => (<NavStyles>
     </Link>
 
     <Link href="/items">
-        <a>Items</a>
+        <a>Shop</a>
     </Link>
 
     <Link href="/signup">

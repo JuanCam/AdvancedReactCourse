@@ -18,7 +18,18 @@ const Mutation = {
             where: {
                 id: args.id
             }
-        }, info); // Mutate in prisma DB
+        }, info); // Mutate in prisma DB, info is the
+                  // return query sent in the Front End
+    },
+
+    async deleteItem(parent, args, ctx, info) {
+        const where = {id: args.id};
+        // Find the item
+        const item = await ctx.db.query.item({where}, `{id  title}`);
+        // TODO: Check if the user owns that item or have permissions
+
+        // Delete item from DB
+        return ctx.db.mutation.deleteItem({where}, info);
     }
 };
 

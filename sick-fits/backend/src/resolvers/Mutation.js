@@ -2,12 +2,22 @@ const bcrypt = require('bcryptjs');
 const { randomBytes } = require('crypto');
 const jwt = require('jsonwebtoken');
 const { promisify } = require('util');
+const { transport, makeANiceEmail } = require('../mail');
 
 const Mutation = {
     async createItem(parent, args, ctx, info) {
-        // TODO: checkl if we are logged in
+        if(ctx.request.userId) {
+            throw new Error('You must be logged in.');
+        }
+
         const item = await ctx.db.mutation.createItem({
-            data: {...args}
+            data: {
+                // This is how relationship is created.
+                user: {
+                    connect: {id: ctx.request.userId}
+                },
+                ...args
+            }
         }, info) // Access prisma DB and mutate
         return item;
     },
@@ -98,6 +108,16 @@ const Mutation = {
             where: {email},
             data: {resetToken, resetTokenExpiry}
         });
+
+        const mailResponse = await transport.sendMail({
+            from: 'juanhuge@ss.com',
+            to: user.email,
+            subject: 'Your Password Reset Token',
+            html: makeANiceEmail(`Your Password Reset Token is: 
+            \n\n 
+            <a href="${process.env.FRONTEND_URL}/reset?resetToken=${resetToken}">Click here to reset</a>`)
+        });
+
         
         return { message: 'An email has been sent to change your password!' };
     },
@@ -134,6 +154,8 @@ const Mutation = {
 
         return modifiedUser;
     }
+
+
 };
 
 module.exports = Mutation;

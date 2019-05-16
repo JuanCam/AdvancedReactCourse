@@ -1,11 +1,25 @@
+const cookieParser = require('cookie-parser');
 require('dotenv').config({path: 'variables.env'});
+const jwt = require('jsonwebtoken');
 const createServer = require('./createServer');
 const db = require('./db');
 
 const server = createServer();
 
-// TODO use express middleware to handle cookies
-// TODO use express middleware to handle current user
+server.express.use(cookieParser());
+// use express middleware to handle current user
+
+// decode JWT so we can get  the user Id on each request
+server.express.use((req, res, next) => {
+    const {token} = req.cookies;
+    if (token) {
+        const {userId} = jwt.verify(token, process.env.APP_SECRET);
+        // put userId onto the request for future requests to access
+        req.userId = userId
+    }
+    next();
+    
+})
 
 server.start({
     cors: {

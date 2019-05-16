@@ -1,7 +1,14 @@
 import Link from 'next/link';
 import NavStyles from './styles/NavStyles';
+import User from './User';
 
 const nav = props => (<NavStyles>
+    <User>
+        {({data: { me }}) => {
+            if (me) return <p>{me.name}</p>;
+            return <p></p>
+        }}
+    </User>
     <Link href="/sell">
         <a>Sell</a>
     </Link>

@@ -2,31 +2,32 @@ import Link from 'next/link';
 import NavStyles from './styles/NavStyles';
 import User from './User';
 
-const nav = props => (<NavStyles>
+const nav = props => (
     <User>
-        {({data: { me }}) => {
-            if (me) return <p>{me.name}</p>;
-            return <p></p>
-        }}
+        {({data: { me }}) => (
+            <NavStyles><Link href="/items">
+                    <a>Shop</a>
+                </Link>
+                
+                {me && (
+                    <>
+                    <Link href="/sell">
+                        <a>Sell</a>
+                    </Link>
+                    <Link href="/orders">
+                        <a>Orders</a>
+                    </Link>
+                    <Link href="/me">
+                        <a>Account</a>
+                    </Link>
+                    </>)}
+                {!me && <Link href="/signin">
+                    <a>Sign In</a>
+                </Link>
+                }
+            </NavStyles>
+        )}
     </User>
-    <Link href="/sell">
-        <a>Sell</a>
-    </Link>
-    <Link href="/me">
-        <a>Account</a>
-    </Link>
-
-    <Link href="/items">
-        <a>Shop</a>
-    </Link>
-
-    <Link href="/signup">
-        <a>Signup</a>
-    </Link>
-
-    <Link href="/orders">
-        <a>Orders</a>
-    </Link>
-    </NavStyles>);
+    );
 
 export default nav;

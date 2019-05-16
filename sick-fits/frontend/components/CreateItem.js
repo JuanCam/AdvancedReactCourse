@@ -78,7 +78,7 @@ class CreateItem extends React.Component {
                     }}>
                     <Error error={error} />
                     
-                    <fieldset disabled={loading} aria-bussy={loading}>
+                    <fieldset disabled={loading} aria-busy={loading}>
 
                         <label htmlFor="file">Image File</label>
                         <input type="file"

@@ -68,7 +68,7 @@ class UpdateItem extends React.Component {
                                 <Form onSubmit={e => this.updateItem(e, updateItem)}>
                                 <Error error={error} />
                                 
-                                <fieldset disabled={loading} aria-bussy={loading}>
+                                <fieldset disabled={loading} aria-busy={loading}>
                                     <label htmlFor="title">Title</label>
                                     <input type="text" 
                                     id="title"

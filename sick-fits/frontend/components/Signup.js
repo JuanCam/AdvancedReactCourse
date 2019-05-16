@@ -45,13 +45,13 @@ class Signup extends React.Component {
                     <fieldset disabled={loading} aria-busy={loading}>
                         <h2>Sign up for an account</h2>
                         <Error error={error} />
-                        <label htemlFor="email" ></label>
+                        <label htmlFor="email" ></label>
                         Email
                         <input id="email" name="email" type="email" placeholder="Your Email please" value={this.state.email} onChange={this.saveToState} />
-                        <label htemlFor="name" ></label>
+                        <label htmlFor="name" ></label>
                         Name
                         <input id="name" name="name" type="text" placeholder="Your Name please" value={this.state.name} onChange={this.saveToState} />
-                        <label htemlFor="password" ></label>
+                        <label htmlFor="password" ></label>
                         Password
                         <input id="password" name="password" type="password" placeholder="Your Password please" value={this.state.password} onChange={this.saveToState} />
                         <button type="submit">Sign up</button>

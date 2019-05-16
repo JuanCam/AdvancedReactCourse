@@ -1,14 +1,15 @@
 import Link from 'next/link';
 import NavStyles from './styles/NavStyles';
 import User from './User';
+import Signout from './Signout';
 
 const nav = props => (
     <User>
         {({data: { me }}) => (
-            <NavStyles><Link href="/items">
+            <NavStyles>
+                <Link href="/items">
                     <a>Shop</a>
                 </Link>
-                
                 {me && (
                     <>
                     <Link href="/sell">
@@ -20,8 +21,9 @@ const nav = props => (
                     <Link href="/me">
                         <a>Account</a>
                     </Link>
+                    <Signout></Signout>
                     </>)}
-                {!me && <Link href="/signin">
+                {!me && <Link href="/signup">
                     <a>Sign In</a>
                 </Link>
                 }

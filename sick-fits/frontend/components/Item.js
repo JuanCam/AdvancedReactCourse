@@ -6,6 +6,7 @@ import ItemStyles from './styles/ItemStyles';
 import PriceTag from './styles/PriceTag';
 import DeleteItem from './DeleteItem';
 import formatMoney from '../lib/formatMoney';
+import AddToCart from './AddToCart';
 
 class Item extends React.Component {
     static propTypes = {
@@ -27,7 +28,7 @@ class Item extends React.Component {
                 <Link href={{pathname: 'update', query: {id: item.id}}}>
                     <a>Edit</a>
                 </Link>
-                <button>Add to cart</button>
+                <AddToCart id={item.id}/>
                 <DeleteItem id={item.id}>Delete</DeleteItem>
             </div>
         </ItemStyles>);

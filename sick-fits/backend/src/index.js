@@ -17,8 +17,21 @@ server.express.use((req, res, next) => {
         // put userId onto the request for future requests to access
         req.userId = userId
     }
+    next();  
+})
+
+// Create the middle that populates the user on each request
+server.express.use(async (req, res, next) => {
+    const { token } = req.cookies;
+    if (!req.userId) {
+        return next();
+    }
+    const user = await db.query.user(
+        {where: {id: req.userId}},
+        `{id, name, email, permissions}`);
+
+    req.user = user;
     next();
-    
 })
 
 server.start({

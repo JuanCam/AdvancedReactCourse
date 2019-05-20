@@ -230,6 +230,30 @@ const Mutation = {
                 }
             }
         }, info);
+    },
+
+    async removeFromCart(parent, args, ctx, info) {
+        const {userId} = ctx.request;
+        if (!userId) {
+            throw new Error('You must be logged in!');
+        }
+
+        const [carItem] = await ctx.db.query.cartItems({
+            where: {
+                id: args.id,
+            }
+        }, `{ id, user { id } }`);
+        
+        if (!carItem) {
+            throw new Error('Item not found!');
+        }
+        
+        if (carItem.user.id !== userId) {
+            throw new Error('User doesn\'t own this item!');
+        }
+        return ctx.db.mutation.deleteCartItem({
+            where: { id: carItem.id },
+        }, info);   
     }
 };
 

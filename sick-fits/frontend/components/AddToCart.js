@@ -15,7 +15,9 @@ mutation addToCart($id: ID!) {
 class AddtoCart extends React.Component {
     render() {
         const {id} = this.props;
-        return <Mutation mutation={ADD_TO_CART_MUTATION} variables={{ id }} refetchQueries={[{ query: CURRENT_USER_QUERY }]}>
+        return <Mutation 
+                mutation={ADD_TO_CART_MUTATION} variables={{ id }} 
+                refetchQueries={[{ query: CURRENT_USER_QUERY }]}>
             {(addToCart, {loading}) => <button onClick={addToCart} disabled={loading}>Add{loading && 'ing'} to Cart</button>}
         </Mutation>;
     }

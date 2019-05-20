@@ -1,7 +1,7 @@
-import React from 'react';
 import formatMoney from '../lib/formatMoney';
 import styled from 'styled-components';
 import PropTyes from 'prop-types';
+import RemoveFromCart from './RemoveFromCart';
 
 const CartItemStyled = styled.li`
 list-style: none;
@@ -19,7 +19,9 @@ h3 {
 }
 `;
 
-const cartItemComponent = ({ cartItem }) => (
+const cartItemComponent = ({ cartItem }) => {
+    if (!cartItem.item) return null;
+    return (
     <CartItemStyled>
         <img width="100" src={cartItem.item.image} alt="" />
         <div className="cart-item-details">
@@ -30,7 +32,9 @@ const cartItemComponent = ({ cartItem }) => (
             <em>{cartItem.quantity} &times; {formatMoney(cartItem.item.price)}</em>
             </p>
         </div>
-    </CartItemStyled>);
+        <RemoveFromCart id={cartItem.id}/>
+    </CartItemStyled>)
+};
 
 cartItemComponent.propTyes = {
     cartItemComponent: PropTyes.shape({

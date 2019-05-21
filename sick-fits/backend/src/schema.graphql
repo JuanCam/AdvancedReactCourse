@@ -18,6 +18,7 @@ type User {
   email: String!
   permissions: [Permission!]
   cart: [CartItem!]!
+  orders: [OrderItem]
 }
 
 type Mutation {
@@ -40,5 +41,7 @@ type Query {
     item(where: ItemWhereUniqueInput!): Item
     itemsConnection(where: ItemWhereInput): ItemConnection!
     me: User,
-    users: [User]!
+    users: [User]!,
+    order(id: ID!): Order,
+    orders(orderBy: OrderOrderByInput): [Order]!
 }

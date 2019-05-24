@@ -40,11 +40,11 @@ class Order extends React.Component {
             {({data, error, loading}) => {
                 if (error) return error;
                 if (loading) return <p>Loading...</p>;
+
                 const { order } = data;
-                return <OrderStyles>
+                return <div data-test="order"><OrderStyles>
                     <Head>
                         <title>Sick Fits - Order {order.title}</title>
-
                     </Head>
                     <p>
                         <span>Order ID:</span>
@@ -79,10 +79,11 @@ class Order extends React.Component {
                                 </div>
                             </div>))}
                     </div>
-                </OrderStyles>
+                </OrderStyles></div>
             }}
         </Query>;
     }
 }
 
 export default Order;
+export { SINGLE_ORDER_QUERY };

@@ -42,7 +42,7 @@ class SingleItem extends React.Component {
                 {({data, error, loading}) => {
                     if (error) return <Error error={error}/>;
                     if (loading) return <p>Loading...</p>;
-                    if (!data.item) return <p>No Item Found!</p>;
+                    if (!data.item) return <p data-test="graphql-error">No Item Found!</p>;
                     const { item } = data;
                     return <SingleItemStyled>
                         <Head>
@@ -61,3 +61,4 @@ class SingleItem extends React.Component {
 }
 
 export default SingleItem;
+export { SINGLE_ITEM_QUERY };

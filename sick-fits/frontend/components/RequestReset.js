@@ -26,7 +26,7 @@ class Signin extends React.Component {
         return (
             <Mutation mutation={REQUEST_RESET_MUTATION} variables={{ ...this.state }}>
                 {(reset, { error, loading, called }) => {
-                    return (<Form method='post' onSubmit={async (e) => {
+                    return (<Form method='post' data-test="request-reset" onSubmit={async (e) => {
                         e.preventDefault()
                         const success = await reset();
                         this.setState({email: ''});
@@ -49,3 +49,4 @@ class Signin extends React.Component {
 }
 
 export default Signin;
+export { REQUEST_RESET_MUTATION }

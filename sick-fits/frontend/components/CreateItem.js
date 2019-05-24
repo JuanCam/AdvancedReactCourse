@@ -64,7 +64,7 @@ class CreateItem extends React.Component {
         return (
             <Mutation mutation={CREATE_ITEM_MUTATION} variables={this.state}>
              {(createItem, {loading, error, called, data}) => (
-                    <Form onSubmit={async (e) => {
+                    <Form data-test="form" onSubmit={async (e) => {
                         // Stop the form from submiting
                         e.preventDefault();
                         // Call mutation

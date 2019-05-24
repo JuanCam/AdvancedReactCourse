@@ -1,0 +1,123 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Order /> renders and matches snapshot 1`] = `
+<div
+  data-test="order"
+>
+  <OrderStyles>
+    <div
+      className="OrderStyles-sc-4oqalm-0 camMij"
+    >
+      <SideEffect(Head)>
+        <Head />
+      </SideEffect(Head)>
+      <p>
+        <span>
+          Order ID:
+        </span>
+        <span>
+          ord123
+        </span>
+      </p>
+      <p>
+        <span>
+          Charge:
+        </span>
+        <span>
+          ch_123
+        </span>
+      </p>
+      <p>
+        <span>
+          Date:
+        </span>
+        <span>
+          March 31, 2018 7:00 PM
+        </span>
+      </p>
+      <p>
+        <span>
+          Order Total:
+        </span>
+        <span>
+          $400
+        </span>
+      </p>
+      <p>
+        <span>
+          Order count:
+        </span>
+        <span>
+          2
+        </span>
+      </p>
+      <div
+        className="items"
+      >
+        <div
+          className="order-item"
+          key="f9bcce46-b516-4189-95ff-fa6ae8c415c3"
+        >
+          <img
+            alt="amet modi reprehenderit omnis adipisci eius laborum"
+            src="tenetur.jpg"
+          />
+          <div
+            className="item-details"
+          >
+            <h2>
+              amet modi reprehenderit omnis adipisci eius laborum
+            </h2>
+            <p>
+              Quantity: 
+              1
+            </p>
+            <p>
+              Each: 
+              4234
+            </p>
+            <p>
+              Subtotal: 
+              4234
+            </p>
+            <p>
+              eius aut illo dolorum ab aliquam id
+            </p>
+          </div>
+        </div>
+        <div
+          className="order-item"
+          key="3fd03e80-9d9d-4810-a8de-fc8184c94bf7"
+        >
+          <img
+            alt="assumenda quasi adipisci mollitia iste itaque omnis"
+            src="molestias.jpg"
+          />
+          <div
+            className="item-details"
+          >
+            <h2>
+              assumenda quasi adipisci mollitia iste itaque omnis
+            </h2>
+            <p>
+              Quantity: 
+              1
+            </p>
+            <p>
+              Each: 
+              4234
+            </p>
+            <p>
+              Subtotal: 
+              4234
+            </p>
+            <p>
+              debitis rem similique temporibus aliquam sed sapiente
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </OrderStyles>
+</div>
+`;
